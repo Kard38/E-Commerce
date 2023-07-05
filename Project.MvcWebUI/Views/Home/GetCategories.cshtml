@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Project.MvcWebUI.Entity.Category>
+
+@{
+    var selectedCategory = Url.RequestContext.RouteData.Values["id"];
+ }
+
+
+
+
+<ul class="list-group">
+   
+        <a href="/Home/List" class="list-group-item">
+            <i class="fa-solid fa-angles-right"></i>
+            Tüm Kategoriler
+        </a>
+    
+    @foreach (var item in Model)
+    {
+        if (selectedCategory != null)
+        {
+            if (item.Id == int.Parse(selectedCategory.ToString()))
+            {
+                //bir kategörü seiçildi
+                
+                    <a href="/Home/List/@item.Id" class="list-group-item active ">
+                        <i class="fa-solid fa-angles-right"></i>
+                        @item.Name
+                    </a>
+                
+            }
+            else
+            {
+                //secili olmasa da gelmeli
+                
+                    <a href="/Home/List/@item.Id" class="list-group-item  ">
+                        <i class="fa-solid fa-angles-right"></i>
+                        @item.Name
+                    </a>
+                
+            }
+        }
+        else
+        {
+            //kategori null ise
+           
+                <a href="/Home/List/@item.Id" class="list-group-item  ">
+                    <i class="fa-solid fa-angles-right"></i>
+                    @item.Name
+                </a>
+            
+        }
+       
+
+    }
+</ul>
+
+   
+

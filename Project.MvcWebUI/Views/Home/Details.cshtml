@@ -1,0 +1,106 @@
+﻿@using Project.MvcWebUI.Entity
+
+@model Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div id="product-details" class="container pb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/Upload//@Model.Image" class="img-fluid rounded ">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Name</h1>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12">
+
+                    @if (Model.IsApproved)
+                    {<span class="badge bg-secondary">In Stock</span> }
+                    else {<span class="badge bg-danger">Not In Stock</span> }
+                    <span class="product-number">#232332</span>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <div id="description">
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-5">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half"></i>
+                    <span class="badge bg-success">43</span>
+                </div>
+                <div id="write-review" class="col-md-4">
+                    <a href="#">
+                        Write a review
+                    </a>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <h4 id="product-price">@Model.Price ₺</h4>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12">
+
+                    @using (Html.BeginForm("AddToCart","Cart"))
+                    {
+                        @Html.HiddenFor(i=> i.Id)
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa-solid fa-cart-circle-plus"></i>
+                        Sepete Ekle
+                    </button>
+                        
+                       
+                    }
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="coll-md-12">
+            <div class="bd-example">
+                <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane" type="button" role="tab" aria-controls="description-tab-pane" aria-selected="true">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment-tab-pane" type="button" role="tab" aria-controls="payment-tab-pane" aria-selected="false" tabindex="-1">Payment Methods</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false" tabindex="-1">Comments</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="description-tab-pane" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
+                        <p>This is some placeholder content the <strong>Home tab's</strong> associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+                    </div>
+                    <div class="tab-pane fade" id="payment-tab-pane" role="tabpanel" aria-labelledby="payment-tab" tabindex="0">
+                        <p>This is some placeholder content the <strong>Contact tab's</strong> associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other <code>.nav</code>-powered navigation.</p>
+                    </div>
+                    <div class="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabindex="0">
+                        <p>This is some placeholder content the <strong>Disabled tab's</strong> associated content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
